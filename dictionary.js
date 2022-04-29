@@ -128,7 +128,7 @@ function russifyCivic(str) {
         corporate_crafters: 'Корпорация мастеров',
 		pompous_purists: 'Напыщенные пуристы'
 	};
-	if(str in dictionaryEthic) return dictionaryEthic[str];
+	if(str in dictionaryCivic) return dictionaryCivic[str];
 	else return str;
 	
 }
