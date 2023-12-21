@@ -92,12 +92,12 @@ div.tooltip {
 <div id='tooltip' class='tooltip' style='display: none;'></div>
 <script type="text/javascript" src="dictionary.js"></script>
 <script type="text/javascript">
-const newEmpireSign = '\"\r\n={';
+const newEmpireSign = '\"=\r\n{';
 const endOfEmpireSign = '\"\r\n}\r\n';
 const endOfLineSign = '\"\r\n';
 const endOfArrayLineSign = '\"\r\n\t}\r\n\t';
 const civicPrefix = '\"civic_';
-const colors = [
+const ethicColors = [
 	'rgb(128, 0, 128)',		//purple10
 	'rgb(255, 0, 255)',		//purple05
 	'rgb(0, 128, 128)',		//l_blue10
@@ -121,6 +121,44 @@ const colors = [
 	'rgb(0, 128, 255)',		//d_blue05
 	'rgb(255, 255, 255)',	//white
 	'rgb(255, 255, 255)'	//just to avoid error in origins
+];
+const colors = [
+	'rgb(208, 97, 18)',
+	'rgb(229, 195, 106)',
+	'rgb(100, 103, 134)',
+	'rgb(43, 104, 167)',
+	'rgb(180, 29, 204)',
+	'rgb(191, 200, 137)',
+	'rgb(104, 12, 63)',
+	'rgb(151, 175, 185)',
+	'rgb(171, 168, 213)',
+	'rgb(28, 150, 113)',
+	'rgb(63, 126, 141)',
+	'rgb(226, 162, 137)',
+	'rgb(64, 110, 221)',
+	'rgb(161, 167, 69)',
+	'rgb(190, 92, 153)',
+	'rgb(61, 241, 202)',
+	'rgb(86, 183, 216)',
+	'rgb(137, 109, 211)',
+	'rgb(19, 94, 74)',
+	'rgb(255, 0, 0)',		//red05
+	'rgb(255, 255, 0)',		//yellow05
+	'rgb(255, 128, 0)',		//orange05
+	'rgb(0, 255, 0)',		//green05
+	'rgb(0, 0, 255)',		//blue05
+	'rgb(191, 191, 191)',	//grey05
+	'rgb(0, 255, 255)', 	//l_blue05
+	'rgb(255, 0, 255)',		//purple05
+	'rgb(255, 192, 96)',	//brown05
+	'rgb(0, 128, 255)',		//d_blue05
+	'rgb(255, 0, 0)',		//red05
+	'rgb(255, 255, 0)',		//yellow05
+	'rgb(255, 128, 0)',		//orange05
+	'rgb(0, 0, 0)',			//black
+	'rgb(0, 255, 0)',		//green05
+	'rgb(255, 255, 255)',	//white
+	'rgb(255, 255, 255)',	//white
 ];
 var civics = [];
 var uniqueCivics = {};
@@ -346,7 +384,7 @@ function prepareEthicsForChart(analysis) {
 	//colors and russification!
 	result.forEach(function(item, index, array) {
 		item.name = russifyEthic(item.name);
-		item.color = colors[index];
+		item.color = ethicColors[index];
 	});
 	return result;
 }
@@ -418,13 +456,14 @@ function prepareOriginsForChart(analysis) {
 		else result.push({name: item, num: 0});
 	});
 	//colors and russification!
-	let shufflingItemColor = true; //shuffling for some motliness
+	//let shufflingItemColor = true; //shuffling for some motliness
 	result.forEach(function(item, index, array) {
 		item.name = russifyOrigin(item.name);
 		if(index) {
-			if(shufflingItemColor) item.color = colors[index+1];
-			else item.color = colors[index-1];
-			shufflingItemColor = !shufflingItemColor;
+			item.color = colors[index];
+			//if(shufflingItemColor) item.color = colors[index+1];
+			//else item.color = colors[index-1];
+			//shufflingItemColor = !shufflingItemColor;
 		}
 		else item.color = colors[index];
 	});
